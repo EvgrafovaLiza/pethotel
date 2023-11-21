@@ -1,0 +1,14 @@
+.book-section {
+    padding: 40px;
+
+    @media screen and (min-width: $bp-tablet) {
+        padding: 20px 0;
+        background-color: var(--color-brand-normal);
+    }
+
+    &__grid{
+        display: grid;
+        grid-template-columns: repeat(5,10px);
+        grid-gap: 20px;
+    }
+}
