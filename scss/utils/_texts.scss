@@ -13,3 +13,9 @@
 .text-uppercase {
     text-transform: uppercase;
 }
+
+.text-brand-light {
+    color: var(--color-brand-light);
+    text-transform: uppercase;
+    font-weight: 600;
+}

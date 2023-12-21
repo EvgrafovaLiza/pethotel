@@ -113,9 +113,7 @@ l52 -3 0 -341 c0 -417 8 -463 96 -550 51 -52 129 -79 239 -85 131 -8 199 9
               <li><a class="link" href="#contact-section">Location</a></li>
             </ul>
           </nav>
-          <button class="header__button button modal-btn-open" type="button">
-            Search booking
-          </button>
+
           <button class="header__burger menu-btn-open" type="button">
             <svg width="24" height="24">
               <use href="./images/icons.svg#icon-menu"></use>
@@ -166,14 +164,40 @@ l52 -3 0 -341 c0 -417 8 -463 96 -550 51 -52 129 -79 239 -85 131 -8 199 9
             </h3>
           </div>
           <div class="book-section__form">
-            <form class="book-section__grid">
-              <input type="date" placeholder="Arrival Date" />
-              <input type="date" placeholder="Departure Date" />
-              <input type="number" placeholder="Pets number" />
-              <button
-                class="hero-section__button button modal-btn-open"
-                type="button"
-              >
+            <form
+              class="book-section__grid"
+              action="/save-booking"
+              method="post"
+            >
+              <input
+                class="arrivalDate"
+                type="date"
+                name="arrivalDate"
+                placeholder="Arrival Date"
+                required
+              />
+              <input
+                class="departureDate"
+                type="date"
+                name="departureDate"
+                placeholder="Departure Date"
+                required
+              />
+              <input
+                class="petsNumber"
+                type="number"
+                name="petsNumber"
+                placeholder="Pets number"
+                required
+              />
+
+              <select name="roomType" id="book-section__roomType" required>
+                <option value="Classic">Classic room</option>
+                <option value="Double-pet">Double-pet room</option>
+                <option value="VIP">VIP room</option>
+              </select>
+
+              <button class="button modal-btn-open" type="button">
                 Search booking
               </button>
             </form>
@@ -306,7 +330,7 @@ l52 -3 0 -341 c0 -417 8 -463 96 -550 51 -52 129 -79 239 -85 131 -8 199 9
                       alt="VIP room"
                     />
                     <h3 class="room-card__title" lang="en">VIP</h3>
-                    <div class="room-card__text"></div>
+                    <div class="room-card__text">Price: 120$/night</div>
                   </article>
                 </li>
                 <li class="swiper-slide">
@@ -317,7 +341,7 @@ l52 -3 0 -341 c0 -417 8 -463 96 -550 51 -52 129 -79 239 -85 131 -8 199 9
                       alt="Double-pet room"
                     />
                     <h3 class="room-card__title" lang="en">Double-pet</h3>
-                    <div class="room-card__text"></div>
+                    <div class="room-card__text">Price: 100$/night</div>
                   </article>
                 </li>
                 <li class="swiper-slide">
@@ -328,7 +352,7 @@ l52 -3 0 -341 c0 -417 8 -463 96 -550 51 -52 129 -79 239 -85 131 -8 199 9
                       alt="Classic room"
                     />
                     <h3 class="room-card__title" lang="en">Classic</h3>
-                    <div class="room-card__text"></div>
+                    <div class="room-card__text">Price: 68$/night</div>
                   </article>
                 </li>
                 <li class="swiper-slide">
@@ -339,7 +363,7 @@ l52 -3 0 -341 c0 -417 8 -463 96 -550 51 -52 129 -79 239 -85 131 -8 199 9
                       alt="Walrus format"
                     />
                     <h3 class="room-card__title" lang="en">VIP</h3>
-                    <div class="room-card__text"></div>
+                    <div class="room-card__text">Price: 120$/night</div>
                   </article>
                 </li>
                 <li class="swiper-slide">
@@ -350,7 +374,7 @@ l52 -3 0 -341 c0 -417 8 -463 96 -550 51 -52 129 -79 239 -85 131 -8 199 9
                       alt="Horseshoe format"
                     />
                     <h3 class="room-card__title" lang="en">Double-pet</h3>
-                    <div class="room-card__text"></div>
+                    <div class="room-card__text">Price: 100$/night</div>
                   </article>
                 </li>
                 <li class="swiper-slide">
@@ -361,7 +385,7 @@ l52 -3 0 -341 c0 -417 8 -463 96 -550 51 -52 129 -79 239 -85 131 -8 199 9
                       alt="Handlebar format"
                     />
                     <h3 class="room-card__title" lang="en">Classic</h3>
-                    <div class="room-card__text"></div>
+                    <div class="room-card__text">Price: 68$/night</div>
                   </article>
                 </li>
               </ul>
@@ -561,60 +585,61 @@ l52 -3 0 -341 c0 -417 8 -463 96 -550 51 -52 129 -79 239 -85 131 -8 199 9
           </svg>
         </button>
         <h2 class="modal__title">Book your pet's stay</h2>
-        <p class="modal__text">
-          Залишіть заявку та наш спеціаліст зв'яжеться з Вами!
-        </p>
+        <p class="modal__text">Leave your details and we will contact you</p>
 
-        <form name="modal-form" autocomplete="off">
+        <form
+          name="modal-form"
+          autocomplete="off"
+          action="/submitForm"
+          method="post"
+        >
           <div class="modal__form-field input">
-            <label class="input__label visually-hidden" for="user-name">
-              Імʼя
+            <label class="input__label visually-hidden" for="userName">
+              Name
             </label>
             <input
               class="input__control"
               type="text"
-              name="user-name"
-              id="user-name"
-              placeholder="Імʼя"
+              name="userName"
+              id="userName"
+              placeholder="Name"
               required
             />
           </div>
 
           <div class="modal__form-field input">
-            <label class="input__label visually-hidden" for="user-tel">
-              Телефон
+            <label class="input__label visually-hidden" for="userTelephone">
+              Phone number
             </label>
             <input
               class="input__control"
               type="tel"
-              name="user-tel"
-              id="user-tel"
-              placeholder="Телефон"
+              name="userTelephone"
+              id="userTelephone"
+              placeholder="Phone number"
               pattern="^\+[0-9]{12}"
               required
             />
           </div>
 
           <div class="modal__form-field input">
-            <label class="input__label visually-hidden" for="user-email">
+            <label class="input__label visually-hidden" for="userEmail">
               Електронна пошта
             </label>
             <input
               class="input__control"
               type="email"
-              name="user-email"
-              id="user-email"
-              placeholder="Електронна пошта"
+              name="userEmail"
+              id="userEmail"
+              placeholder="Email"
               required
             />
           </div>
 
-          <button class="modal__button button" type="submit">
-            Замовити дзвінок
-          </button>
+          <input class="modal__button button" type="submit" value="Submit" />
           <p class="form-terms">
-            Натискаючи на кнопку я погоджуюсь з
-            <a class="form-terms__link" href="#">політикою конфіденційності</a>
+            By clicking the button, I agree to
+            <a class="form-terms__link" href="#">the privacy policy</a>
           </p>
         </form>
       </div>
@@ -624,5 +649,6 @@ l52 -3 0 -341 c0 -417 8 -463 96 -550 51 -52 129 -79 239 -85 131 -8 199 9
     <script src="./js/formats-slider.js"></script>
     <script src="./js/mobile-menu.js"></script>
     <script src="./js/modal.js"></script>
+    <script src="./js/server.js"></script>
   </body>
 </html>
