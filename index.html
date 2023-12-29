@@ -164,11 +164,7 @@ l52 -3 0 -341 c0 -417 8 -463 96 -550 51 -52 129 -79 239 -85 131 -8 199 9
             </h3>
           </div>
           <div class="book-section__form">
-            <form
-              class="book-section__grid"
-              action="/save-booking"
-              method="post"
-            >
+            <form class="book-section__grid">
               <input
                 class="arrivalDate"
                 type="date"
@@ -590,8 +586,8 @@ l52 -3 0 -341 c0 -417 8 -463 96 -550 51 -52 129 -79 239 -85 131 -8 199 9
         <form
           name="modal-form"
           autocomplete="off"
-          action="/submitForm"
-          method="post"
+          id="modalForm"
+          onsubmit="submitForm(event)"
         >
           <div class="modal__form-field input">
             <label class="input__label visually-hidden" for="userName">
@@ -624,7 +620,7 @@ l52 -3 0 -341 c0 -417 8 -463 96 -550 51 -52 129 -79 239 -85 131 -8 199 9
 
           <div class="modal__form-field input">
             <label class="input__label visually-hidden" for="userEmail">
-              Електронна пошта
+              Email
             </label>
             <input
               class="input__control"
@@ -649,6 +645,5 @@ l52 -3 0 -341 c0 -417 8 -463 96 -550 51 -52 129 -79 239 -85 131 -8 199 9
     <script src="./js/formats-slider.js"></script>
     <script src="./js/mobile-menu.js"></script>
     <script src="./js/modal.js"></script>
-    <script src="./js/server.js"></script>
   </body>
 </html>
