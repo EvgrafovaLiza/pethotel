@@ -11,13 +11,11 @@ modalBtnClose.addEventListener('click', toggleModal);
 const submitForm = (event) => {
     event.preventDefault();
   
-    // Check if the form is filled correctly
     if (!bookForm.checkValidity() || !modalForm.checkValidity()) {
       console.error('Error: One or more fields are empty');
       return;
     }
   
-    // Collect form data from both bookForm and modalForm
     const formData = new FormData();
     formData.append('arrivalDate', bookForm.querySelector('.arrivalDate').value);
     formData.append('departureDate', bookForm.querySelector('.departureDate').value);
@@ -27,7 +25,6 @@ const submitForm = (event) => {
     formData.append('userTelephone', modalForm.querySelector('.modal__form-field input[name="userTelephone"]').value);
     formData.append('userEmail', modalForm.querySelector('.modal__form-field input[name="userEmail"]').value);
   
-    // Send the form data to the server
     fetch('server.php', {
       method: 'POST',
       body: formData,
@@ -35,10 +32,9 @@ const submitForm = (event) => {
       .then((response) => response.text())
       .then((message) => {
         console.log(message);
-        toggleModal(); // Close the modal after successful submission
+        toggleModal(); 
       })
       .catch((error) => {
         console.error('Error saving booking data:', error.message);
-        // Handle error as needed
       });
   };
