@@ -1,42 +1,40 @@
 <?php
-// Replace these values with your MySQL database credentials
-$host = 'your_mysql_host';
-$username = 'your_mysql_username';
-$password = 'your_mysql_password';
-$database = 'your_mysql_database';
+// Конфигурация для подключения к базе данных MySQL
+$servername = "localhost";
+$username = "root"; // Имя пользователя базы данных
+$password = ""; // Пароль для доступа к базе данных
+$dbname = "bookings"; // Имя базы данных
 
-// Create a connection to MySQL
-$conn = new mysqli($host, $username, $password, $database);
+// Создание подключения к базе данных
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check the connection
+// Проверка подключения
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("Cant take connection with database: " . $conn->connect_error);
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Retrieve form data
-    $arrivalDate = $_POST['arrivalDate'];
-    $departureDate = $_POST['departureDate'];
-    $petsNumber = $_POST['petsNumber'];
-    $roomType = $_POST['roomType'];
-    $userName = $_POST['userName'];
-    $userTelephone = $_POST['userTelephone'];
-    $userEmail = $_POST['userEmail'];
+// Проверка, был ли запрос методом POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Получение данных из формы
+    $arrivalDate = $_POST["arrivalDate"];
+    $departureDate = $_POST["departureDate"];
+    $petsNumber = $_POST["petsNumber"];
+    $roomType = $_POST["roomType"];
+    $userName = $_POST["userName"];
+    $userTelephone = $_POST["userTelephone"];
+    $userEmail = $_POST["userEmail"];
 
-    // Prepare and execute the SQL query to insert data
-    $stmt = $conn->prepare("INSERT INTO bookings (arrivalDate, departureDate, petsNumber, roomType, userName, userTelephone, userEmail) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param('ssissss', $arrivalDate, $departureDate, $petsNumber, $roomType, $userName, $userTelephone, $userEmail);
-    
-    if ($stmt->execute()) {
-        echo "Booking saved to the MySQL database";
+    // SQL-запрос для вставки данных в таблицу
+    $sql = "INSERT INTO bookings (arrivalDate, departureDate, petsNumber, roomType, userName, userTelephone, userEmail)
+            VALUES ('$arrivalDate', '$departureDate', '$petsNumber', '$roomType', '$userName', '$userTelephone', '$userEmail')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "the record was successfully added to the database";
     } else {
-        echo "Error saving data to the database: " . $stmt->error;
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
-
-    // Close the statement
-    $stmt->close();
 }
 
-// Close the database connection
+// Закрытие соединения с базой данных
 $conn->close();
 ?>
