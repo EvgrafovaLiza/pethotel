@@ -111,10 +111,12 @@ l52 -3 0 -341 c0 -417 8 -463 96 -550 51 -52 129 -79 239 -85 131 -8 199 9
               <li><a class="link" href="#team-section">Team members</a></li>
               <li><a class="link" href="#rooms-section">Rooms</a></li>
               <li><a class="link" href="#contact-section">Location</a></li>
+              <li><button class="login-btn-open button" type="button">Log In</button></li>
+              <li><button class="register-btn-open button" type="button">Sing Up</button></li>
             </ul>
           </nav>
 
-          <button class="header__burger menu-btn-open" type="button">
+          <button class="header__burger menu-btn-open"  type="button">
             <svg width="24" height="24">
               <use href="./images/icons.svg#icon-menu"></use>
             </svg>
@@ -591,6 +593,7 @@ l52 -3 0 -341 c0 -417 8 -463 96 -550 51 -52 129 -79 239 -85 131 -8 199 9
           onsubmit="submitForm(event)"
         >
           <div class="modal__form-field input">
+            
             <input
               class="input__control"
               type="text"
@@ -602,6 +605,7 @@ l52 -3 0 -341 c0 -417 8 -463 96 -550 51 -52 129 -79 239 -85 131 -8 199 9
           </div>
 
           <div class="modal__form-field input">
+          
             <input
               class="input__control"
               type="tel"
@@ -614,6 +618,7 @@ l52 -3 0 -341 c0 -417 8 -463 96 -550 51 -52 129 -79 239 -85 131 -8 199 9
           </div>
 
           <div class="modal__form-field input">
+            
             <input
               class="input__control"
               type="email"
@@ -632,10 +637,55 @@ l52 -3 0 -341 c0 -417 8 -463 96 -550 51 -52 129 -79 239 -85 131 -8 199 9
         </form>
       </div>
     </div>
+    
+    <div class="backdrop is-hidden" id="loginModal">
+      <div class="modal">
+          <button class="modal__btn-close modal-btn-close" type="button">
+              <svg width="24" height="24">
+                  <use href="./images/icons.svg#icon-close"></use>
+              </svg>
+          </button>
+          <h2 class="modal__title">Log In</h2>
+          <form id="loginForm" autocomplete="off">
+              <div class="modal__form-field input">
+                  <input class="input__control" type="text" name="username" placeholder="Username" required />
+              </div>
+              <div class="modal__form-field input">
+                  <input class="input__control" type="password" name="password" placeholder="Password" required />
+              </div>
+              <input class="modal__button button" type="submit" value="Log In" />
+          </form>
+      </div>
+  </div>
+
+  <div class="backdrop is-hidden" id="registerModal">
+    <div class="modal">
+        <button class="modal__btn-close modal-btn-close" type="button">
+            <svg width="24" height="24">
+                <use href="./images/icons.svg#icon-close"></use>
+            </svg>
+        </button>
+        <h2 class="modal__title">Sign Up</h2>
+        <form id="registerForm" autocomplete="off">
+            <div class="modal__form-field input">
+                <input class="input__control" type="text" name="username" placeholder="Username" required />
+            </div>
+            <div class="modal__form-field input">
+                <input class="input__control" type="email" name="email" placeholder="Email" required />
+            </div>
+            <div class="modal__form-field input">
+                <input class="input__control" type="password" name="password" placeholder="Password" required />
+            </div>
+            <input class="modal__button button" type="submit" value="Sign Up" />
+        </form>
+    </div>
+</div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="./js/formats-slider.js"></script>
     <script src="./js/mobile-menu.js"></script>
     <script src="./js/modal.js"></script>
+    <script src="./js/loginModal.js"></script>
+    <script src="./js/registerModal.js"></script>
   </body>
 </html>
